@@ -4,6 +4,8 @@ import com.proxy.Service.ShipProxyClientService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +21,10 @@ public class ProxyController {
     @RequestMapping("/**")
     public void handleProxy(HttpServletRequest request, HttpServletResponse response) throws IOException {
        proxyClientService.sendRequestToServer(request,response);
+    }
+
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok("OK");
     }
 }
